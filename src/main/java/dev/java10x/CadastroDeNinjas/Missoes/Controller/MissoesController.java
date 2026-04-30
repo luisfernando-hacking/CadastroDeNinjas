@@ -11,9 +11,4 @@ import java.util.List;
 @RequestMapping
 public class MissoesController {
 
-    @GetMapping("/listar")
-    public List<MissoesModel> listar() {
-        return new List;
-    }
-
 }
