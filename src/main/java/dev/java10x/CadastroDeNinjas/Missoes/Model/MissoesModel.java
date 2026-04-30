@@ -15,8 +15,6 @@ import java.util.List;
 @Data
 public class MissoesModel {
 
-    // ORM (mapeamento objeto-relacional) --> um scanner que fica escaneando a todo momento a classe de entidade para criar/alterar colunas na tabela. ele mapeia, interpreta e envia todos os atributos para o banco de dados
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

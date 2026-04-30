@@ -15,42 +15,20 @@ import java.util.List;
 @Data
 public class NinjaModel {
 
-    // --------------- ARQUITETURA POR CAMADA -----------------
-    //
-    //                    NO MINIMO
-    //  Apresentação   -->     Controller
-    //  Serviço        -->     Service
-    //  Persistencia   -->     Repository (com banco de dados)
-    //  Banco de Dados
-    //
-    //                 E tem outras, que ficam entre o service e o repository
-    //                 -->     Model
-    //                 -->     DTO
-    //
-    //  Monolito       -->     Todos os códigos no mesmo lugar
-
-
-    // ORM (mapeamento objeto-relacional) --> um scanner que fica escaneando a todo momento a classe de entidade para criar/alterar colunas na tabela. ele mapeia, interpreta e envia todos os atributos para o banco de dados
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_gerado_sequencialmente")      // podemos especificar o nome da coluna
-    private Long id;                    // PK --> primary key
+    private Long id;
 
-    @Column(name = "nome_ninja")
-    private String nome;                // VARCHAR(255)
+    private String nome;
 
-    @Column(unique = true, name = "email_ninja")
-    private String email;               // VARCHAR(255) Unique
+    private String email;
 
-    @Column(name = "img_url")
     private String imgUrl;
 
-    @Column(name = "idade_ninja")
-    private int idade;                  // INT
+    private int idade;
 
     @ManyToOne
     @JoinColumn(name = "missoes_id")
-    private MissoesModel missoes;       // FK --> foreign key
+    private MissoesModel missoes;
 
 }
