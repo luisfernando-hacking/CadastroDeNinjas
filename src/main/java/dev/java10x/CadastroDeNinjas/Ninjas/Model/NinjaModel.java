@@ -10,24 +10,47 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_cadastro")
-@NoArgsConstructor           // construtor vazio
-@AllArgsConstructor          // com todos os parâmetros
-@Data                        // getters e setters
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class NinjaModel {
+
+    // --------------- ARQUITETURA POR CAMADA -----------------
+    //
+    //                    NO MINIMO
+    //  Apresentação   -->     Controller
+    //  Serviço        -->     Service
+    //  Persistencia   -->     Repository (com banco de dados)
+    //  Banco de Dados
+    //
+    //                 E tem outras, que ficam entre o service e o repository
+    //                 -->     Model
+    //                 -->     DTO
+    //
+    //  Monolito       -->     Todos os códigos no mesmo lugar
+
+
+    // ORM (mapeamento objeto-relacional) --> um scanner que fica escaneando a todo momento a classe de entidade para criar/alterar colunas na tabela. ele mapeia, interpreta e envia todos os atributos para o banco de dados
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id_gerado_sequencialmente")      // podemos especificar o nome da coluna
+    private Long id;                    // PK --> primary key
 
-    private String nome;
+    @Column(name = "nome_ninja")
+    private String nome;                // VARCHAR(255)
 
-    @Column(unique = true)              // email unico para cada ninja
-    private String email;
+    @Column(unique = true, name = "email_ninja")
+    private String email;               // VARCHAR(255) Unique
 
-    private int idade;
+    @Column(name = "img_url")
+    private String imgUrl;
+
+    @Column(name = "idade_ninja")
+    private int idade;                  // INT
 
     @ManyToOne
     @JoinColumn(name = "missoes_id")
-    private MissoesModel missoes;
+    private MissoesModel missoes;       // FK --> foreign key
 
 }

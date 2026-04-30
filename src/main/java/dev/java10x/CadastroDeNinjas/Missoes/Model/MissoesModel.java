@@ -10,10 +10,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_missoes")
-@NoArgsConstructor           // construtor vazio
-@AllArgsConstructor          // com todos os parâmetros
-@Data                        // getters e setters
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class MissoesModel {
+
+    // ORM (mapeamento objeto-relacional) --> um scanner que fica escaneando a todo momento a classe de entidade para criar/alterar colunas na tabela. ele mapeia, interpreta e envia todos os atributos para o banco de dados
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
