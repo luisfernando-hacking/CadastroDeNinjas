@@ -17,14 +17,26 @@ public class NinjaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "nome")
     private String nome;
 
+    @Column(name = "email", unique = true)
     private String email;
 
+//    vamos supor que precisemos criar uma nova coluna já com a database criada, podemos criar um parametro novo (usando hibernates) mas nao temos controle do versionamento
+//
+//    @Column(name = "rank")
+//    private String rank;
+//
+//    ou usar o liquid base ou o flyway justamente para ter controle do versionamento
+
+    @Column(name = "img_url")
     private String imgUrl;
 
+    @Column(name = "idade")
     private int idade;
 
     @ManyToOne

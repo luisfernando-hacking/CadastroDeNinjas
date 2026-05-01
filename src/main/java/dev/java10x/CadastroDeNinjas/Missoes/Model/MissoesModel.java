@@ -17,10 +17,13 @@ public class MissoesModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "nome")
     private String nomeMissao;
 
+    @Column(name = "dificuldade")
     private String dificuldade;
 
     @OneToMany(mappedBy = "missoes")
