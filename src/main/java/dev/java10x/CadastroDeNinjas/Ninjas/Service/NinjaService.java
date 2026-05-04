@@ -23,4 +23,8 @@ public class NinjaService {
         return ninja.orElse(null);                                // se nao existir ele retorna nulo
     }
 
+    public NinjaModel criarNinja(NinjaModel ninja) {
+        return ninjaRepository.save(ninja);     // esse metodo é a mesma coisa que o insert
+    }
+
 }

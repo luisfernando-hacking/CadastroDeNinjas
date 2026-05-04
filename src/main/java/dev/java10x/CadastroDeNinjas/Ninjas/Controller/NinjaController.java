@@ -17,8 +17,8 @@ public class NinjaController {
     private NinjaService ninjaService;      // injetando dependencia
 
     @PostMapping("/adicionar")
-    public String criarNinja() {
-        return "Ninja adicionado";
+    public NinjaModel adicionarNinja(@RequestBody NinjaModel ninja) {    // resposta pelo corpo da requisicao, em JSON
+        return ninjaService.criarNinja(ninja);
     }
 
     @GetMapping("/listar")
