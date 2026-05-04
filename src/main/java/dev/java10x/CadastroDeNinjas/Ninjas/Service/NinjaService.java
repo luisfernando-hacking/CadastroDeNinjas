@@ -27,4 +27,9 @@ public class NinjaService {
         return ninjaRepository.save(ninja);     // esse metodo é a mesma coisa que o insert
     }
 
+    // tem que ser void
+    public void deletarNinjaPorId(Long id) {
+        ninjaRepository.deleteById(id);                          // DELETE FROM TB_CADASTRO WHERE ID=?
+    }
+
 }
