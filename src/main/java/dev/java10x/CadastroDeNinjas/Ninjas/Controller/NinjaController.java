@@ -26,14 +26,14 @@ public class NinjaController {
         return ninjaService.listarNinjas();
     }
 
-    @GetMapping("/listar/{id}")           // usando path variables
+    @GetMapping("/listar/{id}")           // usando path variables (variavel pelo caminho)
     public NinjaModel listarNinjasPorId(@PathVariable Long id) {
         return ninjaService.listarNinjaPorId(id);
     }
 
     @PutMapping("editar/{id}")
-    public String editarNinjaPorId() {
-        return "Ninja editado por ID";
+    public NinjaModel editarNinjaPorId(@PathVariable Long id, @RequestBody NinjaModel ninjaAtualizado) {
+        return ninjaService.atualizarNinjaPorId(id, ninjaAtualizado);
     }
 
     @DeleteMapping("deletar/{id}")
