@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class NinjaService {
@@ -19,13 +20,20 @@ public class NinjaService {
     @Autowired
     private NinjaMapper ninjaMapper;          // mapeamento
 
-    public List<NinjaModel> listarNinjas() {
-        return ninjaRepository.findAll();
+    public List<NinjaDTO> listarNinjas() {
+        List<NinjaModel> ninjas = ninjaRepository.findAll();
+
+        return ninjas.stream()
+                .map(ninjaMapper::mapping)
+                .collect(Collectors.toList());
     }
 
-    public NinjaModel listarNinjaPorId(Long id) {
+    public NinjaDTO listarNinjaPorId(Long id) {
         Optional<NinjaModel> ninja = ninjaRepository.findById(id);
-        return ninja.orElse(null);
+
+        return ninja
+                .map(ninjaMapper::mapping)
+                .orElse(null);
     }
 
     public NinjaDTO criarNinja(NinjaDTO ninjaDTO) {
@@ -36,14 +44,19 @@ public class NinjaService {
         return ninjaMapper.mapping(ninja);
     }
 
-    public void deletarNinjaPorId(Long id) {      // tem que ser void
+    public void deletarNinjaPorId(Long id) {      // como nao tem ligação direta com o model, nao tem o que mudar
         ninjaRepository.deleteById(id);
     }
 
-    public NinjaModel atualizarNinjaPorId(Long id, NinjaModel ninjaAtualizado) {
-        if (ninjaRepository.existsById(id)) {
-            ninjaAtualizado.setId(id);
-            return ninjaRepository.save(ninjaAtualizado);
+    public NinjaDTO atualizarNinjaPorId(Long id, NinjaDTO ninjaAtualizadoDTO) {
+        Optional<NinjaModel> ninjaExistente = ninjaRepository.findById(id);      // mesma coisa que o if/else
+
+        if (ninjaExistente.isPresent()) {
+            NinjaModel ninjaAtualizadoModel = ninjaMapper.mapping(ninjaAtualizadoDTO);
+            ninjaAtualizadoModel.setId(id);
+            NinjaModel ninja = ninjaRepository.save(ninjaAtualizadoModel);
+
+            return ninjaMapper.mapping(ninja);
         }
 
         return null;

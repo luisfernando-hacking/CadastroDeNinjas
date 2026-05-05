@@ -12,6 +12,8 @@ import java.util.List;
 @RequestMapping("/ninjas")
 public class NinjaController {
 
+    // tudo substituido de model para dto...
+
     @Autowired
     private NinjaService ninjaService;
 
@@ -21,17 +23,17 @@ public class NinjaController {
     }
 
     @GetMapping("/listar")
-    public List<NinjaModel> listarNinjas() {
+    public List<NinjaDTO> listarNinjas() {
         return ninjaService.listarNinjas();
     }
 
     @GetMapping("/listar/{id}")
-    public NinjaModel listarNinjasPorId(@PathVariable Long id) {
+    public NinjaDTO listarNinjasPorId(@PathVariable Long id) {
         return ninjaService.listarNinjaPorId(id);
     }
 
     @PutMapping("editar/{id}")
-    public NinjaModel editarNinjaPorId(@PathVariable Long id, @RequestBody NinjaModel ninjaAtualizado) {
+    public NinjaDTO editarNinjaPorId(@PathVariable Long id, @RequestBody NinjaDTO ninjaAtualizado) {
         return ninjaService.atualizarNinjaPorId(id, ninjaAtualizado);
     }
 
