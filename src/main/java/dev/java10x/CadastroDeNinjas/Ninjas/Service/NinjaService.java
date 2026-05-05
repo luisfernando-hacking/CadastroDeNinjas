@@ -1,5 +1,7 @@
 package dev.java10x.CadastroDeNinjas.Ninjas.Service;
 
+import dev.java10x.CadastroDeNinjas.Ninjas.DTO.NinjaDTO;
+import dev.java10x.CadastroDeNinjas.Ninjas.Mapper.NinjaMapper;
 import dev.java10x.CadastroDeNinjas.Ninjas.Model.NinjaModel;
 import dev.java10x.CadastroDeNinjas.Ninjas.Repository.NinjaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class NinjaService {
     @Autowired
     private NinjaRepository ninjaRepository;
 
+    @Autowired
+    private NinjaMapper ninjaMapper;          // mapeamento
+
     public List<NinjaModel> listarNinjas() {
         return ninjaRepository.findAll();
     }
@@ -23,8 +28,12 @@ public class NinjaService {
         return ninja.orElse(null);
     }
 
-    public NinjaModel criarNinja(NinjaModel ninja) {
-        return ninjaRepository.save(ninja);
+    public NinjaDTO criarNinja(NinjaDTO ninjaDTO) {
+        NinjaModel ninja = ninjaMapper.mapping(ninjaDTO);
+
+        ninja = ninjaRepository.save(ninja);
+
+        return ninjaMapper.mapping(ninja);
     }
 
     public void deletarNinjaPorId(Long id) {      // tem que ser void
