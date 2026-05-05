@@ -11,13 +11,11 @@ import java.util.List;
 @RequestMapping("/ninjas")
 public class NinjaController {
 
-    // CRUD --> Create / Read / Update / Delete
-
-    @Autowired   // inicializando construtor
-    private NinjaService ninjaService;      // injetando dependencia
+    @Autowired
+    private NinjaService ninjaService;
 
     @PostMapping("/adicionar")
-    public NinjaModel adicionarNinja(@RequestBody NinjaModel ninja) {    // resposta pelo corpo da requisicao, em JSON
+    public NinjaModel adicionarNinja(@RequestBody NinjaModel ninja) {
         return ninjaService.criarNinja(ninja);
     }
 
@@ -26,7 +24,7 @@ public class NinjaController {
         return ninjaService.listarNinjas();
     }
 
-    @GetMapping("/listar/{id}")           // usando path variables (variavel pelo caminho)
+    @GetMapping("/listar/{id}")
     public NinjaModel listarNinjasPorId(@PathVariable Long id) {
         return ninjaService.listarNinjaPorId(id);
     }
