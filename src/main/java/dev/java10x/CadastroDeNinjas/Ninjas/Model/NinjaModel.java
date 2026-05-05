@@ -29,6 +29,9 @@ public class NinjaModel {
     @Column(name = "img_url")
     private String imgUrl;
 
+    @Column(name = "rank")          // ja que estamos usando DTOs, podemos adicionar aqui tranquilamente no model
+    private String rank;
+
     @Column(name = "idade")
     private int idade;
 
