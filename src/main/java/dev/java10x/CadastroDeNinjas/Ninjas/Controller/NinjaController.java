@@ -13,8 +13,11 @@ import java.util.List;
 @RequestMapping("/ninjas")
 public class NinjaController {
 
-    @Autowired
-    private NinjaService ninjaService;
+    private final NinjaService ninjaService;
+
+    public NinjaController(NinjaService ninjaService) {
+        this.ninjaService = ninjaService;
+    }
 
     @PostMapping("/adicionar")
     public ResponseEntity<String> adicionarNinja(@RequestBody NinjaDTO ninjaDTO) {      // retornando uma resposta do tipo string

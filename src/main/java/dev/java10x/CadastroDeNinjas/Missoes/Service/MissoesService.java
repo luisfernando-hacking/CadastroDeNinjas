@@ -14,11 +14,13 @@ import java.util.stream.Collectors;
 @Service
 public class MissoesService {
 
-    @Autowired
-    private MissoesRepository missoesRepository;
+    private final MissoesRepository missoesRepository;
+    private final MissoesMapper missoesMapper;
 
-    @Autowired
-    private MissoesMapper missoesMapper;
+    public MissoesService(MissoesRepository missoesRepository, MissoesMapper missoesMapper) {
+        this.missoesRepository = missoesRepository;
+        this.missoesMapper = missoesMapper;
+    }
 
     public List<MissoesDTO> listarMissoes() {
         List<MissoesModel> missoes = missoesRepository.findAll();

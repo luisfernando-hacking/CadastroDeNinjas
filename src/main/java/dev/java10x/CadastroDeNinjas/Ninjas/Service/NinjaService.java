@@ -14,11 +14,14 @@ import java.util.stream.Collectors;
 @Service
 public class NinjaService {
 
-    @Autowired
-    private NinjaRepository ninjaRepository;
 
-    @Autowired
-    private NinjaMapper ninjaMapper;          // mapeamento
+    private final NinjaRepository ninjaRepository;
+    private final NinjaMapper ninjaMapper;
+
+    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
+        this.ninjaRepository = ninjaRepository;
+        this.ninjaMapper = ninjaMapper;
+    }
 
     public List<NinjaDTO> listarNinjas() {
         List<NinjaModel> ninjas = ninjaRepository.findAll();
