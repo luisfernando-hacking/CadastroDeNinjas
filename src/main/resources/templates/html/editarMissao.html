@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Lista de Missões</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI';
+            background: #f4f6f9;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background: orange;
+            border: none;
+            cursor: pointer;
+        }
+
+        img {
+            display: block;
+            margin: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Editar Missão</h1>
+
+<form th:action="@{/missoes/ui/editar/{id}(id=${missao.id})}"
+      th:object="${missao}"
+      method="post">
+
+    <input type="text" th:field="*{nomeMissao}">
+    <input type="text" th:field="*{dificuldade}">
+
+    <button type="submit">Atualizar</button>
+</form>
+
+<a th:href="@{/missoes/ui/listar}">Voltar</a>
+
+</body>
+</html>

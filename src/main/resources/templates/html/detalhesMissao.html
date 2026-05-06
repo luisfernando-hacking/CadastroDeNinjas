@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Detalhes da Missões</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f6f9;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 20px;
+        }
+
+        .card img {
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+
+        .info {
+            margin-bottom: 10px;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .btn-voltar {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px;
+            background: #4e73df;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .btn-voltar:hover {
+            background: #224abe;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Detalhes da Missão</h1>
+
+<div>
+    <p><strong>ID:</strong> <span th:text="${missao.id}"></span></p>
+    <p><strong>Nome:</strong> <span th:text="${missao.nomeMissao}"></span></p>
+    <p><strong>Dificuldade:</strong> <span th:text="${missao.dificuldade}"></span></p>
+</div>
+
+<a th:href="@{/missoes/ui/listar}">Voltar</a>
+
+</body>
+</html>

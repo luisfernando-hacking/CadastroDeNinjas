@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Ninja</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f6f9;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #222;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            background: #4e73df;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #224abe;
+        }
+
+        .btn-voltar {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px;
+            background: #36b9cc;
+            color: white;
+            border-radius: 6px;
+        }
+
+        .btn-voltar:hover {
+            background: #2c9faf;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Cadastrar Ninja</h1>
+
+<div class="form-container">
+    <form th:action="@{/ninjas/ui/criar}" th:object="${ninja}" method="post">
+
+        <label>Nome</label>
+        <input type="text" th:field="*{nome}" required>
+
+        <label>Idade</label>
+        <input type="number" th:field="*{idade}" required>
+
+        <label>E-mail</label>
+        <input type="email" th:field="*{email}" required>
+
+        <label>Imagem (URL)</label>
+        <input type="text" th:field="*{imgUrl}">
+
+        <label>Rank</label>
+        <select th:field="*{rank}">
+            <option value="Genin">Genin</option>
+            <option value="Chunin">Chunin</option>
+            <option value="Jonin">Jonin</option>
+            <option value="Kage">Kage</option>
+        </select>
+
+        <button type="submit">Salvar Ninja</button>
+    </form>
+
+    <a th:href="@{/ninjas/ui/listar}" class="btn-voltar">Voltar</a>
+</div>
+
+</body>
+</html>
