@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Lista de Missões</title>
+
+    <style>
+        /* Reset básico */
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        /* Corpo da página */
+        body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f6f9;
+        color: #333;
+        padding: 30px;
+        }
+
+        /* Título */
+        h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #222;
+        }
+
+        /* Tabela */
+        table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        /* Cabeçalho */
+        thead {
+        background: linear-gradient(135deg, #4e73df, #224abe);
+        color: #fff;
+        }
+
+        thead th {
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+        }
+
+        /* Linhas */
+        tbody tr {
+        border-bottom: 1px solid #eee;
+        transition: background 0.2s ease;
+        }
+
+        tbody tr:hover {
+        background: #f1f5ff;
+        }
+
+        /* Células */
+        td {
+        padding: 12px 15px;
+        vertical-align: middle;
+        }
+
+        /* Imagens */
+        td img {
+        border-radius: 8px;
+        object-fit: cover;
+        border: 2px solid #ddd;
+        }
+
+        /* Botões */
+        a {
+        text-decoration: none;
+        padding: 8px 12px;
+        margin-right: 5px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        display: inline-block;
+        }
+
+        /* Botão detalhes */
+        a:nth-child(1) {
+        background: #36b9cc;
+        color: white;
+        }
+
+        a:nth-child(1):hover {
+        background: #2c9faf;
+        }
+
+        /* Botão editar */
+        a:nth-child(2) {
+        background: #f6c23e;
+        color: #333;
+        }
+
+        a:nth-child(2):hover {
+        background: #dda20a;
+        }
+
+        /* Botão deletar */
+        a:nth-child(3) {
+        background: #e74a3b;
+        color: white;
+        }
+
+        a:nth-child(3):hover {
+        background: #c0392b;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+
+        thead {
+            display: none;
+        }
+
+        tr {
+            margin-bottom: 15px;
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: right;
+            position: relative;
+        }
+
+        td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 10px;
+            font-weight: bold;
+            text-align: left;
+        }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Lista de Missões</h1>
+
+<div style="text-align:center; margin-bottom:20px;">
+    <a th:href="@{/missoes/ui/adicionar}">Adicionar Missão</a>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Dificuldade</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="missao : ${missoes}">
+        <td th:text="${missao.id}"></td>
+        <td th:text="${missao.nomeMissao}"></td>
+        <td th:text="${missao.dificuldade}"></td>
+
+        <td>
+            <a th:href="@{/missoes/ui/listar/{id}(id=${missao.id})}">Detalhes</a>
+            <a th:href="@{/missoes/ui/editar/{id}(id=${missao.id})}">Editar</a>
+            <a th:href="@{/missoes/ui/deletar/{id}(id=${missao.id})}">Deletar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

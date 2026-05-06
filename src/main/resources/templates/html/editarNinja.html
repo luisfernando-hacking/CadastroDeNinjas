@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Ninja</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI';
+            background: #f4f6f9;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background: orange;
+            border: none;
+            cursor: pointer;
+        }
+
+        img {
+            display: block;
+            margin: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Editar Ninja</h1>
+
+<div class="form-container">
+
+    <img th:src="${ninja.imgUrl}" width="150">
+
+    <form th:action="@{/ninjas/ui/editar/{id}(id=${ninja.id})}"
+          th:object="${ninja}"
+          method="post">
+
+        <input type="text" th:field="*{nome}" placeholder="Nome">
+        <input type="number" th:field="*{idade}" placeholder="Idade">
+        <input type="email" th:field="*{email}" placeholder="Email">
+        <input type="text" th:field="*{imgUrl}" placeholder="URL da imagem">
+
+        <select th:field="*{rank}">
+            <option value="Genin">Genin</option>
+            <option value="Chunin">Chunin</option>
+            <option value="Jonin">Jonin</option>
+            <option value="Kage">Kage</option>
+
+        </select>
+
+        <button type="submit">Atualizar</button>
+    </form>
+
+    <a th:href="@{/ninjas/ui/listar}">Voltar</a>
+
+</div>
+
+</body>
+</html>
